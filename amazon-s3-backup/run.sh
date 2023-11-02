@@ -8,6 +8,7 @@ bashio::log.info "Starting Amazon S3 Backup..."
 
 bucket_name="$(bashio::config 'bucket_name')"
 storage_class="$(bashio::config 'storage_class' 'STANDARD')"
+endpoint_url="$(bashio::config 'endpoint_url' '')"
 bucket_region="$(bashio::config 'bucket_region' 'eu-central-1')"
 delete_local_backups="$(bashio::config 'delete_local_backups' 'true')"
 local_backups_to_keep="$(bashio::config 'local_backups_to_keep' '3')"
@@ -20,7 +21,7 @@ export AWS_REGION="$bucket_region"
 
 bashio::log.debug "Using AWS CLI version: '$(aws --version)'"
 bashio::log.debug "Command: 'aws s3 sync $monitor_path s3://$bucket_name/ --no-progress --region $bucket_region --storage-class $storage_class'"
-aws s3 sync $monitor_path s3://"$bucket_name"/ --no-progress --region "$bucket_region" --storage-class "$storage_class"
+aws s3 sync $monitor_path --endpoint-url "$endpoint_url" s3://"$bucket_name"/ --no-progress --region "$bucket_region"
 
 if bashio::var.true "${delete_local_backups}"; then
     bashio::log.info "Will delete local backups except the '${local_backups_to_keep}' newest ones."
