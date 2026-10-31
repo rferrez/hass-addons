@@ -7,13 +7,8 @@ COPY run.sh /
 RUN chmod a+x /run.sh
 
 # add aws-cli and deps
-RUN apk add -v --update --no-cache \
-        python3 \
-        py3-pip \
-        groff \
-        less \
-        jq \
-        && \
-    pip3 install --upgrade awscli
+RUN apk add -v --no-cache \
+        aws-cli \
+        jq
     
 CMD [ "/run.sh" ]  

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.0
+
+- Fix the build on current Supervisor: add `build.yaml` with the base images (`BUILD_FROM` is no longer defaulted).
+- Install `aws-cli` from Alpine instead of pip (pip system installs are blocked on current Alpine).
+- Only pass `--endpoint-url` when `endpoint_url` is set.
+- New `remote_backups_to_keep` option: delete the oldest `.tar` backups in the bucket beyond that count (`0`, the default, keeps everything). Keep it at least `local_backups_to_keep`.
+
 ## 1.2.2
 
 - Backup Script was running twice since it was still in services.d folder. Removed all unnecessary files.

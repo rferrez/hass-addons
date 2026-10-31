@@ -82,6 +82,9 @@ Should the addon remove oldest local backups after syncing to your Amazon S3 Buc
 ### Option: `local_backups_to_keep` (optional, Default: 3)
 How many backups you want to keep locally? If you want to disable automatic local cleanup, set `delete_local_backups` to false.
 
+### Option: `remote_backups_to_keep` (optional, Default: 0)
+How many `.tar` backups to keep in the bucket; older ones are deleted after each sync. `0` keeps everything. Set it to at least `local_backups_to_keep`, otherwise the next sync uploads the local copies again. Useful on S3-compatible storage (e.g. OVH) where lifecycle rules may not be available.
+
 If you also want to automatically delete backups to keep your Amazon S3 Bucket clean, or change the storage class for backups to safe some money, you should take a look at S3 Lifecycle Rules (https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-set-lifecycle-configuration-intro.html).
 
 ## Security
