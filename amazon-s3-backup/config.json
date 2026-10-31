@@ -1,6 +1,6 @@
 {
   "name": "Amazon/OVH S3 Backup",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "slug": "amazon-s3-backup",
   "description": "Sync Backups to your Amazon S3 bucket",
   "url": "https://github.com/rferrez/hass-addons/tree/main/amazon-s3-backup",
@@ -25,7 +25,8 @@
     "storage_class": "STANDARD",
     "delete_local_backups": true,
     "local_backups_to_keep": 3,
-    "endpoint_url": ""
+    "endpoint_url": "",
+    "remote_backups_to_keep": 0
   },
   "schema": {
     "aws_access_key": "str",
@@ -35,7 +36,8 @@
     "storage_class": "list(STANDARD|REDUCED_REDUNDANCY|STANDARD_IA|ONEZONE_IA|INTELLIGENT_TIERING|GLACIER|DEEP_ARCHIVE)",
     "delete_local_backups": "bool",
     "local_backups_to_keep": "int",
-    "endpoint_url": "str"
+    "endpoint_url": "str",
+    "remote_backups_to_keep": "int"
   },
   "map": [
     "backup:rw"
